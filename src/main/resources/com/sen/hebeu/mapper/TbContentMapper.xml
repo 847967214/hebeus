@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sen.hebeu.mapper.TbContentMapper" >
+  <resultMap id="BaseResultMap" type="com.sen.hebeu.pojo.TbContent" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="category_id" property="categoryId" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="sub_title" property="subTitle" jdbcType="VARCHAR" />
+    <result column="title_desc" property="titleDesc" jdbcType="VARCHAR" />
+    <result column="academy_id" property="academyId" jdbcType="INTEGER" />
+    <result column="profession_id" property="professionId" jdbcType="INTEGER" />
+    <result column="grade_level" property="gradeLevel" jdbcType="VARCHAR" />
+    <result column="subclassification" property="subclassification" jdbcType="BIGINT" />
+    <result column="macrotaxonomy" property="macrotaxonomy" jdbcType="BIGINT" />
+    <result column="classify" property="classify" jdbcType="INTEGER" />
+    <result column="format" property="format" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="pic2" property="pic2" jdbcType="VARCHAR" />
+    <result column="created" property="created" jdbcType="TIMESTAMP" />
+    <result column="updated" property="updated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.sen.hebeu.pojo.TbContent" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, category_id, user_id, title, sub_title, title_desc, academy_id, profession_id, 
+    grade_level, subclassification, macrotaxonomy, classify, format, source, url, password, 
+    pic, pic2, created, updated
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.sen.hebeu.pojo.TbContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.sen.hebeu.pojo.TbContentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_content
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from tb_content
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.sen.hebeu.pojo.TbContentExample" >
+    delete from tb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.sen.hebeu.pojo.TbContent" >
+    insert into tb_content (id, category_id, user_id, 
+      title, sub_title, title_desc, 
+      academy_id, profession_id, grade_level, 
+      subclassification, macrotaxonomy, classify, 
+      format, source, url, 
+      password, pic, pic2, 
+      created, updated, content
+      )
+    values (#{id,jdbcType=BIGINT}, #{categoryId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{title,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, #{titleDesc,jdbcType=VARCHAR}, 
+      #{academyId,jdbcType=INTEGER}, #{professionId,jdbcType=INTEGER}, #{gradeLevel,jdbcType=VARCHAR}, 
+      #{subclassification,jdbcType=BIGINT}, #{macrotaxonomy,jdbcType=BIGINT}, #{classify,jdbcType=INTEGER}, 
+      #{format,jdbcType=INTEGER}, #{source,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{pic,jdbcType=VARCHAR}, #{pic2,jdbcType=VARCHAR}, 
+      #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sen.hebeu.pojo.TbContent" >
+    insert into tb_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="subTitle != null" >
+        sub_title,
+      </if>
+      <if test="titleDesc != null" >
+        title_desc,
+      </if>
+      <if test="academyId != null" >
+        academy_id,
+      </if>
+      <if test="professionId != null" >
+        profession_id,
+      </if>
+      <if test="gradeLevel != null" >
+        grade_level,
+      </if>
+      <if test="subclassification != null" >
+        subclassification,
+      </if>
+      <if test="macrotaxonomy != null" >
+        macrotaxonomy,
+      </if>
+      <if test="classify != null" >
+        classify,
+      </if>
+      <if test="format != null" >
+        format,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="pic2 != null" >
+        pic2,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null" >
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="titleDesc != null" >
+        #{titleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="academyId != null" >
+        #{academyId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null" >
+        #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="gradeLevel != null" >
+        #{gradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="subclassification != null" >
+        #{subclassification,jdbcType=BIGINT},
+      </if>
+      <if test="macrotaxonomy != null" >
+        #{macrotaxonomy,jdbcType=BIGINT},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=INTEGER},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.sen.hebeu.pojo.TbContentExample" resultType="java.lang.Integer" >
+    select count(*) from tb_content
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_content
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.categoryId != null" >
+        category_id = #{record.categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subTitle != null" >
+        sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.titleDesc != null" >
+        title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.academyId != null" >
+        academy_id = #{record.academyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.professionId != null" >
+        profession_id = #{record.professionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gradeLevel != null" >
+        grade_level = #{record.gradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subclassification != null" >
+        subclassification = #{record.subclassification,jdbcType=BIGINT},
+      </if>
+      <if test="record.macrotaxonomy != null" >
+        macrotaxonomy = #{record.macrotaxonomy,jdbcType=BIGINT},
+      </if>
+      <if test="record.classify != null" >
+        classify = #{record.classify,jdbcType=INTEGER},
+      </if>
+      <if test="record.format != null" >
+        format = #{record.format,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic != null" >
+        pic = #{record.pic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pic2 != null" >
+        pic2 = #{record.pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.created != null" >
+        created = #{record.created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updated != null" >
+        updated = #{record.updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update tb_content
+    set id = #{record.id,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      academy_id = #{record.academyId,jdbcType=INTEGER},
+      profession_id = #{record.professionId,jdbcType=INTEGER},
+      grade_level = #{record.gradeLevel,jdbcType=VARCHAR},
+      subclassification = #{record.subclassification,jdbcType=BIGINT},
+      macrotaxonomy = #{record.macrotaxonomy,jdbcType=BIGINT},
+      classify = #{record.classify,jdbcType=INTEGER},
+      format = #{record.format,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      pic2 = #{record.pic2,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_content
+    set id = #{record.id,jdbcType=BIGINT},
+      category_id = #{record.categoryId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      sub_title = #{record.subTitle,jdbcType=VARCHAR},
+      title_desc = #{record.titleDesc,jdbcType=VARCHAR},
+      academy_id = #{record.academyId,jdbcType=INTEGER},
+      profession_id = #{record.professionId,jdbcType=INTEGER},
+      grade_level = #{record.gradeLevel,jdbcType=VARCHAR},
+      subclassification = #{record.subclassification,jdbcType=BIGINT},
+      macrotaxonomy = #{record.macrotaxonomy,jdbcType=BIGINT},
+      classify = #{record.classify,jdbcType=INTEGER},
+      format = #{record.format,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      pic = #{record.pic,jdbcType=VARCHAR},
+      pic2 = #{record.pic2,jdbcType=VARCHAR},
+      created = #{record.created,jdbcType=TIMESTAMP},
+      updated = #{record.updated,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sen.hebeu.pojo.TbContent" >
+    update tb_content
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null" >
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="titleDesc != null" >
+        title_desc = #{titleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="academyId != null" >
+        academy_id = #{academyId,jdbcType=INTEGER},
+      </if>
+      <if test="professionId != null" >
+        profession_id = #{professionId,jdbcType=INTEGER},
+      </if>
+      <if test="gradeLevel != null" >
+        grade_level = #{gradeLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="subclassification != null" >
+        subclassification = #{subclassification,jdbcType=BIGINT},
+      </if>
+      <if test="macrotaxonomy != null" >
+        macrotaxonomy = #{macrotaxonomy,jdbcType=BIGINT},
+      </if>
+      <if test="classify != null" >
+        classify = #{classify,jdbcType=INTEGER},
+      </if>
+      <if test="format != null" >
+        format = #{format,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="pic2 != null" >
+        pic2 = #{pic2,jdbcType=VARCHAR},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.sen.hebeu.pojo.TbContent" >
+    update tb_content
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      title_desc = #{titleDesc,jdbcType=VARCHAR},
+      academy_id = #{academyId,jdbcType=INTEGER},
+      profession_id = #{professionId,jdbcType=INTEGER},
+      grade_level = #{gradeLevel,jdbcType=VARCHAR},
+      subclassification = #{subclassification,jdbcType=BIGINT},
+      macrotaxonomy = #{macrotaxonomy,jdbcType=BIGINT},
+      classify = #{classify,jdbcType=INTEGER},
+      format = #{format,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sen.hebeu.pojo.TbContent" >
+    update tb_content
+    set category_id = #{categoryId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      title_desc = #{titleDesc,jdbcType=VARCHAR},
+      academy_id = #{academyId,jdbcType=INTEGER},
+      profession_id = #{professionId,jdbcType=INTEGER},
+      grade_level = #{gradeLevel,jdbcType=VARCHAR},
+      subclassification = #{subclassification,jdbcType=BIGINT},
+      macrotaxonomy = #{macrotaxonomy,jdbcType=BIGINT},
+      classify = #{classify,jdbcType=INTEGER},
+      format = #{format,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pic = #{pic,jdbcType=VARCHAR},
+      pic2 = #{pic2,jdbcType=VARCHAR},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,262 @@
+/*
+#head-Tabs {border: 1px darkblue}
+*/
+
+body {
+    background: #fafafa
+}
+
+a {
+    color: #141414;
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+#head-Tabs {
+    margin-bottom: 10px;
+}
+
+.sel_pan {
+    margin-top: 2px;
+    border-radius: 30px;
+
+}
+
+.sel_pan div {
+
+    height: 200px;
+    border: 1px sandybrown solid;
+    display: none;
+
+    border-radius: 4px 4px 16px 16px;
+
+}
+
+#navbar-collapse {
+    margin-top: 4px;
+}
+
+#navbar-collapse button {
+    margin: 4px
+}
+
+#navbar-collapse input {
+    margin: 4px
+}
+
+/* 小单元 */
+
+/*外DIV的样式*/
+.mini_div {
+    overflow: hidden;
+    padding: 6px;
+}
+
+/* 上div的样式 */
+.mini_top {
+    height: 70px;
+}
+
+.mini_top img {
+    height: 65px;
+    width: 65px;
+    float: left;
+    margin: 2px;
+}
+
+.mini_top div {
+    float: left;
+    margin-left: 4px;
+}
+
+.mini_top div p {
+}
+
+/* 上div的样式 */
+.mini_down {
+    float: left;
+    height: 128px
+}
+
+/* 表的布局 */
+.mini_down table {
+    width: 268px;
+    table-layout: fixed; /* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+
+}
+
+.mini_down table td {
+    word-break: keep-all; /* 不换行 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用*/
+}
+
+.mini_down table a:hover {
+    text-decoration-line: none
+}
+
+.mini_down table {
+    font-size: 10px;
+    collapse: 0px;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.mini_down table .c1 {
+    width: 8px;
+    text-align: center;
+}
+
+.mini_down table .c2 {
+    width: 108px;
+}
+
+.mini_down table .c3 {
+    width: 40px;;
+    text-align: center;
+}
+
+/* 小单元 */
+
+#body_pan1 {
+    font-size: 9px
+}
+
+#body_pan1 img {
+}
+
+#home_nav {
+    margin-bottom: 10px
+}
+
+
+/*文件分享，上传弹出框、遮罩 */
+.floats {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    filter: alpha(opacity=50);
+}
+
+.alert {
+    width: 800px;
+    height: 620px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -400px;
+    margin-top: -300px;
+}
+
+.hide {
+    display: none
+}
+
+#share_alert_body {
+    height: 480px;
+    overflow: hidden
+}
+/*文件分享，上传弹出框、遮罩  end*/
+
+
+
+
+
+
+
+
+
+
+
+
+/* 个人面板 */
+#idPan {
+    margin: 12px
+}
+
+#idPan table {
+    width: 100%
+}
+
+#idPan tr {
+    line-height: 24px
+}
+
+#idPan span, #idPan a {
+    font-size: 16px;
+    margin-left: 4px
+}
+
+/* 个人面板 */
+
+/* 互动面板 */
+#hdPan table {
+    text-align: center;
+    padding-top: 4px;
+    height: 80px
+}
+
+#hdPan a {
+    color: black
+}
+
+#hdPan span {
+    font-size: 20px;
+    color: #3f86d1;
+}
+
+/* 互动面板 end*/
+
+/* 信息面板 */
+#infPan span {
+    font-size: 14px;
+    display: inline;
+}
+
+/* 信息面板 */
+
+
+/* 网站公告 */
+.noticePan span {
+}
+
+.b3{
+    text-align:right;
+}
+
+/* 网站公告 end*/
+
+
+
+
+
+
+
+
+/* 资源下载界面 */
+.sourcesInfo {
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    border: 1px red solid;
+    margin-bottom: 20px;
+
+}
+
+
+
+
+
+
+
+.csss {border: 1px red solid;width:600px}
+.csss td{border: 1px red solid;width:50px}
